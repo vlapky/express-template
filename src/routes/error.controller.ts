@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
-import { inspect } from 'util';
+import { AppError, errors } from '../errors';
 
 export const errorController = (
-  err: unknown,
+  err: AppError | Error,
   req: Request,
   res: Response,
   next: NextFunction
@@ -13,8 +13,16 @@ export const errorController = (
 
   // send error to sentry
 
+  console.error(err);
+
   res.status(500);
-  res.json({
-    error: inspect(err),
-  });
+  if (err instanceof AppError && err.isOperational) {
+    res.json({
+      error: err.message,
+    });
+  } else {
+    res.json({
+      error: errors.INTERNAL,
+    });
+  }
 };

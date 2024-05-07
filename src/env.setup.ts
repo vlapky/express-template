@@ -9,6 +9,9 @@ const zodEnv = z.object({
   PORT: z.string(),
   DOMAIN: z.string(),
   GOOGLE_CALLBACK: z.string(),
+  GOOGLE_CLIENT_ID: z.string(),
+  GOOGLE_CLIENT_SECRET: z.string(),
+  JWT_SECRET_KEY: z.string(),
 });
 
 declare global {

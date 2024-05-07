@@ -1,8 +1,8 @@
-import './env.setup';
 import express from 'express';
 import morgan from 'morgan';
-import { routes } from './routes';
 import helmet from 'helmet';
+import './env.setup';
+import { routes } from './routes';
 
 const app = express();
 const port = process.env.PORT;
