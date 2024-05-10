@@ -3,6 +3,7 @@ import { passport } from './passport.setup';
 import { AuthRequest } from '../../types/passport';
 import { signToken } from './jwt';
 import { AppError, errors } from '../../errors';
+import { roleMap } from '../roles/roles.utils';
 
 const routes = express.Router();
 
@@ -28,7 +29,7 @@ routes.get(
       // exchange google user id to our user id from db
       const userId = userGoogleId; // TODO
 
-      const token = signToken({ id: userId });
+      const token = signToken({ id: userId, role: roleMap.FREE_USER });
 
       res.json({ token });
       // res.redirect('/abc'); // frontend url

@@ -2,9 +2,11 @@ import { UserToken } from './../../types/token.d';
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { AppError, errors } from '../../errors';
+import { rolesType } from '../roles/roles.utils';
 
 interface Payload {
   id: string;
+  role: rolesType;
 }
 export const signToken = (payload: Payload) => {
   const token = jwt.sign(payload, process.env.JWT_SECRET_KEY);

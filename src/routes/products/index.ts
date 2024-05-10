@@ -8,7 +8,7 @@ routes.post('/', async (req, res, next) => {
   await res.json(products);
 });
 
-routes.get('/', verifyToken, async (req, res, next) => {
+routes.get('/', async (req, res, next) => {
   await res.json(products);
 });
 
