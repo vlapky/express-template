@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import cors from 'cors';
 import './env.setup';
 import { routes } from './routes';
 
@@ -10,6 +11,11 @@ const port = process.env.PORT;
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(helmet());
+app.use(
+  cors({
+    origin: 'http://example123.com',
+  })
+);
 
 app.use(routes);
 
